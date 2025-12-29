@@ -1,0 +1,165 @@
+.skills-section {
+    max-width: 1200px;
+    margin: 0 auto 100px auto;
+    padding: 2rem;
+    color: white;
+    perspective: 1000px;
+}
+
+.skills-title {
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(to right, #fff, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: shine-text 5s linear infinite;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    perspective: 1000px;
+}
+
+.skill-card-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    height: 100%;
+}
+
+.skill-card {
+    background: rgba(10, 10, 16, 0.6);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Animated border gradient using pseudo-element */
+.skill-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: 21px;
+    background: linear-gradient(125deg,
+            rgba(0, 255, 255, 0.3),
+            rgba(255, 0, 255, 0.3),
+            rgba(0, 255, 255, 0.3));
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.skill-card:hover::before {
+    opacity: 0.8;
+    animation: border-rotate 4s linear infinite;
+}
+
+.skill-card:hover {
+    box-shadow:
+        0 20px 40px -10px rgba(0, 255, 255, 0.15),
+        0 0 20px rgba(0, 255, 255, 0.1) inset;
+}
+
+.card-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 70%);
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+    transition: opacity 0.3s ease;
+}
+
+.skill-category-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.6rem;
+    color: #00ffff;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    transform: translateZ(30px);
+    letter-spacing: 1px;
+}
+
+.skill-items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    transform: translateZ(20px);
+}
+
+.skill-pill {
+    font-size: 0.95rem;
+    font-family: 'Outfit', sans-serif;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-pill:hover {
+    background: rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.5);
+    color: #fff;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Subtle "scanline" or grid bg */
+.skill-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 20px 20px;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+    mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+
+@keyframes shine-text {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@keyframes border-rotate {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}

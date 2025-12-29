@@ -1,0 +1,130 @@
+.navbar-container {
+    position: fixed;
+    top: -100px;
+    /* Start hidden above screen */
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    min-width: 300px;
+    max-width: 90vw;
+    z-index: 1000;
+    padding: 0.6rem 0.8rem;
+    /* Tighter padding for toggle look */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    /* Glassmorphism */
+    background: rgba(20, 20, 25, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50px;
+
+    /* 3D shadows */
+    box-shadow:
+        0 20px 40px -10px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.navbar-container.visible {
+    top: 2rem;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.navbar-container.scrolled {
+    background: rgba(5, 5, 8, 0.85);
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 20px 40px -10px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(0, 255, 255, 0.15) inset;
+    top: 1.5rem;
+}
+
+.nav-logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #fff;
+    position: relative;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding-left: 1rem;
+    cursor: pointer;
+}
+
+.nav-logo::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: #00ffff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #00ffff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    /* Tighter gap for segmented control feel */
+    align-items: center;
+    background: rgba(0, 0, 0, 0.2);
+    /* Segmented control container bg */
+    padding: 0.25rem;
+    border-radius: 30px;
+}
+
+.nav-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+}
+
+.nav-link:hover {
+    color: #fff;
+}
+
+/* Glass toggle effect for active state */
+.nav-link.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow:
+        0 4px 15px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    backdrop-filter: blur(10px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+/* 3D float animation on hover */
+.navbar-container:hover {
+    transform: translateX(-50%) translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .navbar-container.visible {
+        top: auto;
+        bottom: 2rem;
+    }
+
+    .navbar-container.scrolled {
+        top: auto;
+        bottom: 1.5rem;
+    }
+}

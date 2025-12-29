@@ -1,0 +1,193 @@
+.projects-section {
+    max-width: 1200px;
+    margin: 0 auto 100px auto;
+    padding: 2rem;
+    color: white;
+    perspective: 1000px;
+}
+
+.projects-title {
+    font-size: 3rem;
+    margin-bottom: 4rem;
+    text-align: center;
+    font-family: 'Space Grotesk', sans-serif;
+    background: linear-gradient(to right, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 3rem;
+    padding: 1rem;
+}
+
+.project-card-container {
+    perspective: 1000px;
+    /* Ensure perspective for individual cards */
+    height: 100%;
+}
+
+.project-card {
+    background: rgba(15, 15, 20, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+    transform-style: preserve-3d;
+    user-select: none;
+}
+
+/* Neon glow border effect */
+.project-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    padding: 1px;
+    background: linear-gradient(135deg,
+            var(--card-color, #00ffff),
+            transparent 40%,
+            transparent 60%,
+            var(--card-color, #ff00ff));
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+/* Hover state only active for the top card (logic handled in JS via class/style) */
+.project-card-container[data-active="true"]:hover .project-card::before {
+    opacity: 1;
+    box-shadow: 0 0 20px var(--card-color, #00ffff);
+}
+
+.card-glare {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%),
+            rgba(255, 255, 255, 0.15) 0%,
+            transparent 80%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+}
+
+.project-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2rem;
+    color: var(--card-color, #fff);
+    margin: 0;
+    transform: translateZ(30px);
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+}
+
+.project-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+    transform: translateZ(20px);
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    transform: translateZ(25px);
+    margin-top: auto;
+}
+
+.project-tag {
+    font-size: 0.85rem;
+    font-family: 'Outfit', sans-serif;
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.2s ease;
+}
+
+.github-btn {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    transform: translateZ(35px);
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    cursor: pointer;
+    width: 100%;
+}
+
+.github-btn svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.github-btn:hover {
+    background: var(--card-color);
+    border-color: var(--card-color);
+    color: #000;
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5);
+    transform: translateZ(45px) translateY(-2px);
+}
+
+/* Tutorial/Hint Text */
+.stack-instructions {
+    text-align: center;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+@media (max-width: 768px) {
+    .projects-stack {
+        max-width: 90%;
+        height: 600px;
+    }
+}

@@ -1,0 +1,148 @@
+.app-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.ballpit-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  /* Let clicks pass through if needed, but App.jsx handles pointer events on canvas mainly */
+}
+
+/* We don't need .overlay to be absolute full screen anymore if we want it to scroll. 
+   We will make a content-wrapper z-index 1. 
+*/
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Enable pointer events on interactive elements */
+.overlay>* {
+  pointer-events: auto;
+}
+
+.hero-text {
+  text-align: center;
+  color: white;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* .name styles removed as we are using TextPressure */
+
+.title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+  margin-top: -1rem;
+}
+
+.intro-line {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.2rem;
+  max-width: 600px;
+  line-height: 1.6;
+  opacity: 0.8;
+  margin-top: 2rem;
+  font-weight: 300;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+@keyframes pulse-glow {
+  0% {
+    text-shadow: 0 0 30px rgba(0, 123, 255, 0.3);
+  }
+
+  50% {
+    text-shadow: 0 0 60px rgba(0, 123, 255, 0.8), 0 0 10px white;
+  }
+
+  100% {
+    text-shadow: 0 0 30px rgba(0, 123, 255, 0.3);
+  }
+}
+
+@keyframes glitch-anim {
+  0% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-2px, 2px)
+  }
+
+  40% {
+    transform: translate(-2px, -2px)
+  }
+
+  60% {
+    transform: translate(2px, 2px)
+  }
+
+  80% {
+    transform: translate(2px, -2px)
+  }
+
+  100% {
+    transform: translate(0)
+  }
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  font-size: 0.8rem;
+  opacity: 0.5;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.gradient-text span {
+  background: linear-gradient(180deg, #fff, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent !important;
+}
