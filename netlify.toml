@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Omit these keys from the secret scanner because they are public by design (EmailJS)
+  SECRETS_SCAN_OMIT_KEYS = "VITE_SERVICE_ID,VITE_TEMPLATE_ID,VITE_PUBLIC_KEY"
+
+# Handle SPA routing (redirect 404s to index.html)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
